@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>black-market-new-product</title>
+</head>
+<body class="form-body">
+    <div class="logo-container">
+        <img src="/favicon.ico" class="logo">
+        <a href="/" class="root-link">black-market.io | admin-dashboard</a>
+    </div>
+
+    <div class="container">
+        <h1>add-new-product</h1>
+
+        <form method="post" enctype="multipart/form-data">
+            <label for="product">product-name:</label>
+            <div class="custom-input">
+                <input type="text" name="product" placeholder="product-name" autocomplete="off">
+                <i class='bx bx-microchip'></i>
+            </div>
+            <label for="price">product-price:</label>
+            <div class="custom-input">
+                <input type="number" name="price" placeholder="0.00" step="0.01" min="0">
+                <i class='bx bx-dollar' ></i>
+            </div>
+            <label for="image">product-image:</label>
+            <div class="custom-input">
+                <input type="file" name="image" accept="image/*">
+                <i class='bx bx-image-alt' ></i>
+            </div>
+            <button type="submit" class="add-product">add-product</button>
+        </form>
+
+        <p class="message"><%=locals.message%></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>black-market-register</title>
+</head>
+<body class="form-body">
+    <div class="logo-container">
+        <img src="/favicon.ico" class="logo">
+        <a href="/" class="root-link">black-market.io</a>
+    </div>
+
+    <div class="container">
+        <h1>register-new-account</h1>
+
+        <form method="post">
+            <label for="email">email:</label>
+            <div class="custom-input">
+                <input type="email" name="email" placeholder="your-email" autocomplete="off" required>
+                <i class='bx bx-envelope'></i>
+            </div>
+            <label for="password">password:</label>
+            <div class="custom-input">
+                <input type="password" name="password" placeholder="your-password" required>
+                <i class='bx bx-lock-alt'></i>
+            </div>
+            <button type="submit" class="register">register</button>
+        </form>
+
+        <div class="links">
+            <a href="/login">already-have-an-account?</a>
+        </div>
+
+        <p class="message"><%=locals.message%></p>
+    </div>
+</body>
+</html>

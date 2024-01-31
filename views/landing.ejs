@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>black-market</title>
+</head>
+<body class="main-body">
+    <div class="navigation">
+        <div class="logo-container">
+            <img class="logo" src="/favicon.ico">
+            <a class="root-link" href="/">black-market.io</a>
+        </div>
+
+        <form method="get" class="search-bar">
+            <input type="text" name="search" placeholder="search-for-items" autocomplete="off">
+            <button type="submit">
+                <i class='bx bx-search'></i>
+            </button>
+        </form>
+
+        <div class="options">
+            <% if (!locals.session.user) { %>
+                <a href="/login">login<i class='bx bx-log-in'></i></a>
+            <% } else { %>
+                <a href="/logout">logout<i class='bx bx-log-out'></i></a>
+                <a href="/checkout">checkout<i class='bx bx-cart'></i></a>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="products-container">
+        <% if (locals.session.admin) { %>
+            <div class="item new-product">
+                <a href="/new-product">
+                    <i class='bx bx-chip'></i>
+                    add-new-product
+                </a>
+            </div>
+        <% } %>
+
+        <% for (const product of locals.products) { %>
+            <div class="item">
+                <a href="/product/<%=product._id%>">
+                    <img class="product-image" src="/uploads/<%=product.filename%>"/>
+                    <p class="product-name"><%=product.product%></p>
+                    <p class="product-price"><%=product.price%>$</p>
+                </a>
+            </div>
+        <% } %>
+    </div>
+    
+</body>
+</html>

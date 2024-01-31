@@ -1,0 +1,6 @@
+node_modules
+logs/*
+*.css.map
+*.css
+package-lock.json
+.env

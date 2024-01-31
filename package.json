@@ -1,0 +1,25 @@
+{
+  "name": "black-market",
+  "version": "1.0.0",
+  "description": "online shop mock-up for a university class",
+  "author": "Mateusz Łuczyński",
+  "license": "GPL-3.0",
+  "main": "main.js",
+  "keywords": [
+    "nodejs",
+    "express"
+  ],
+  "dependencies": {
+    "connect-mongo": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mongoose": "^8.1.0",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^2.7.0",
+    "sass": "^1.70.0",
+    "simple-oauth2": "^5.0.0",
+    "winston": "^3.11.0"
+  }
+}

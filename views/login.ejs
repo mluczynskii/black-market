@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>black-market-login</title>
+</head>
+<body class="form-body">
+    <div class="logo-container">
+        <img class="logo" src="/favicon.ico">
+        <a class="root-link" href="/">black-market.io</a>
+    </div>
+
+    <div class="container">
+        <h1>login-to-your-account</h1>
+
+        <div class="socials">
+            <button onclick="location.href='<%-google%>'" type="button" class="google">
+                login-with-google 
+                <i class="bx bxl-google"></i>
+            </button>
+        </div>
+
+        <div class="divider">
+            <div class="line"></div>
+            or
+            <div class="line"></div>
+        </div>
+
+        <form method="post">
+            <label for="email">email:</label>
+            <div class="custom-input">
+                <input type="email" name="email" placeholder="your-email" autocomplete="off" required>
+                <i class='bx bx-envelope'></i>
+            </div>
+            <label for="password">password:</label>
+            <div class="custom-input">
+                <input type="password" name="password" placeholder="your-password" required>
+                <i class='bx bx-lock-alt'></i>
+            </div>
+            <button type="submit" class="login">login</button>
+        </form>
+
+        <div class="links">
+            <a href="/register">don't-have-an-account?</a>
+        </div>
+
+        <p class="message"><%=locals.message%></p>
+    </div>
+</body>
+</html>

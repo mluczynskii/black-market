@@ -1,0 +1,38 @@
+services:
+  server:
+    build: .
+    env_file: .env
+    ports:
+      - ${NODE_PORT}:${NODE_PORT}
+    volumes:
+      - .:/home/node/app
+    depends_on:
+      - mongodb
+    
+  mongodb:
+    image: mongo:latest
+    env_file: .env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - database:/data/db
+
+  mongoexpress:
+    image: mongo-express:latest
+    env_file: .env
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:27017/${DB_NAME}?authSource=admin
+      - ME_CONFIG_MONGODB_AUTH_USERNAME=${DB_USER}
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=${DB_PASSWORD}
+      - ME_CONFIG_BASICAUTH=true
+      - ME_CONFIG_BASICAUTH_USERNAME=${ME_USER}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${ME_PASSWORD}
+    ports:
+      - 8081:8081
+    depends_on:
+      - server
+
+volumes:
+  database:
+    

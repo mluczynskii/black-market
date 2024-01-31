@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'IBM Plex Mono', monospace;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #393646;
+}
+
+.form-body {
+    height: 100vh;
+    align-items: center;
+    color: #F4EEE0;
+
+    .logo-container {
+        position: absolute;
+        top: 26px;
+        left: 20px;
+    }
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .logo {width: 48px;}
+
+    .root-link {
+        font-size: 24px;
+        font-weight: bold;
+    }
+}
+
+.main-body .logo-container {width: 25%;}
+
+.navigation {
+    background-color: #393646;
+    position: fixed;
+    top: 0;
+    padding: 20px;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.container {
+    width: 540px;
+    padding: 40px 32px;
+    border-radius: 8px;
+}
+
+p, h1, h2, a {text-align: center;}
+
+.socials {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+
+    .google {
+        padding: 8px;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        font-size: 1rem;
+        background-color: #F4EEE0;
+        color: #393646;
+        cursor: pointer;
+        border-radius: 8px;
+
+        i {font-size: 26px;}
+    }
+}
+
+.divider {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 18px;
+
+    .line {
+        width: 100%;
+        height: 1px;
+        background: #F4EEE0;
+    }
+}
+
+.custom-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    input {
+        font-size: 20px;
+        width: 100%;
+        height: 40px;
+        background: #F4EEE0;
+        border-radius: 8px;
+        text-indent: 20px;
+        outline: none;
+        color: #393646;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {appearance: textfield;}
+
+    input::file-selector-button {
+        margin-top: 6px;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+    }
+}
+
+.form-body form {
+    font-size: 24px;
+    letter-spacing: 0.03rem;
+
+    label {
+        display: block;
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    .login, .register, .add-product {
+        width: 100%;
+        margin-top: 30px;
+        color: #F4EEE0;
+        background: #6D5D6E;
+        border: none;
+        cursor: pointer;
+        line-height: 40px;
+        font-size: 20px;
+        border-radius: 8px;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: #F4EEE0;
+}
+
+.form-body .links {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+
+    a {
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+
+.search-bar {
+    display: flex;
+    width: 50%;
+
+    input, button {
+        height: 50px;
+        background-color: #F4EEE0;
+        border: none;
+    }
+    
+    input {
+        outline: none;
+        width: 100%;
+        font-size: 20px;
+        text-indent: 20px;
+    }
+
+    button {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        font-size: 30px;
+    }
+}
+
+.navigation .options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: 25%;
+
+    a {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 20px;
+
+        i {
+            font-size: 40px;
+            cursor: pointer;
+        }
+    }
+}
+
+.products-container {
+    width: 85%;
+    margin-top: 140px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 30px;
+
+    .item {
+        cursor: pointer;
+        padding: 10px;
+        aspect-ratio: 1 / 1;
+        background-color: #F4EEE0;
+
+        a {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #393646;
+            gap: 5px;
+
+            .product-image {
+                height: 60%;
+                aspect-ratio: 1 / 1;
+            }
+
+            .product-name {
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                font-size: 25px;
+            }
+
+            .product-price {font-size: 30px;}
+        }
+    }
+
+    .item:hover {background-color: #e5dbc2;}
+
+    .new-product {
+        a {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 25px;
+            font-weight:500;
+            color:#393646;
+        }
+    
+        i {font-size: 40px;}
+    }
+}
