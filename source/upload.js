@@ -17,15 +17,4 @@ const upload = multer({storage});
 
 const uploadMiddleware = name => upload.single(name);
 
-async function newProduct(req, res) {
-    const product = new Product({
-        product: req.body.product,
-        price: req.body.price,
-        filename: req.file.filename
-    });
-    await product.save();
-    logger.info(`New product uploaded: ${req.body.product}`);
-    res.render('new-product', {message: 'Product added successfully'});
-}
-
-module.exports = {uploadMiddleware, newProduct};
+module.exports = {uploadMiddleware};

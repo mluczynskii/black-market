@@ -8,7 +8,7 @@ const {logger} = require('./source/logs');
 const database = require('./source/database');
 const {login, register, logout, authorize} = require('./source/login');
 const {sessionManager} = require('./source/session');
-const {uploadMiddleware, newProduct} = require('./source/upload');
+const {uploadMiddleware} = require('./source/upload');
 const products = require('./source/products');
 
 let app = express();
@@ -35,11 +35,13 @@ app.post('/register', register);
 app.get('/logout', logout);
 
 app.get('/new-product', authorize('admin'), (_, res) => res.render('new-product'));
-app.post('/new-product', authorize('admin'), uploadMiddleware('image'), newProduct);
+app.post('/new-product', authorize('admin'), uploadMiddleware('image'), products.newProduct);
 
 app.get('/product/:id', products.viewProduct);
 app.get('/add-to-cart/:id', authorize('user'), products.addToCart);
 app.get('/delete/:id', authorize('admin'), products.deleteProduct);
+app.get('/edit/:id', authorize('admin'), products.getEditProduct);
+app.post('/edit/:id', authorize('admin'), uploadMiddleware('image'), products.postEditProduct);
 
 app.get('/oauth', oauth);
 

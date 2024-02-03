@@ -25,6 +25,17 @@ async function viewProduct(req, res) {
     });
 }
 
+async function newProduct(req, res) {
+    const product = new Product({
+        product: req.body.product,
+        price: req.body.price,
+        filename: req.file.filename
+    });
+    await product.save();
+    logger.info(`New product uploaded: ${req.body.product}`);
+    res.render('new-product', {message: 'Product added successfully'});
+}
+
 async function addToCart(req, res) {
     try {
         const {product, price} = await Product.findById(req.params.id).exec();
@@ -50,4 +61,34 @@ async function deleteProduct(req, res) {
     }
 }
 
-module.exports = {search, viewProduct, addToCart, deleteProduct};
+async function getEditProduct(req, res) {
+    try {
+        const product = await Product.findById(req.params.id).exec();
+        res.render('edit-product', {product});
+    } catch(err) {
+        logger.error(err);
+        res.redirect('/');
+    }
+}
+
+async function postEditProduct(req, res) {
+    try {
+        const product = await Product.findById(req.params.id).exec();
+        Object.assign(product, {
+            product: req.body.product,
+            price: req.body.price,
+            filename: req.file ? req.file.filename : product.filename
+        });
+        await product.save();
+        logger.info(`Product with id: ${req.params.id} updated`);
+        res.render('edit-product', {
+            product,
+            message: 'product-updated-successfully'
+        })
+    } catch (err) {
+        logger.error(err);
+        res.redirect('/');
+    }
+}
+
+module.exports = {search, viewProduct, addToCart, deleteProduct, getEditProduct, postEditProduct, newProduct};
