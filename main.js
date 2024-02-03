@@ -26,24 +26,25 @@ app.get('/', products.search, (req, res) => res.render('landing', {
     products: req.products
 }));
 
+app.get('/oauth', oauth);
 app.get('/login', (_, res) => res.render('login', {google: authorizationUri}));
 app.post('/login', login);
-
 app.get('/register', (_, res) => res.render('register'));
 app.post('/register', register);
-
 app.get('/logout', logout);
 
 app.get('/new-product', authorize('admin'), (_, res) => res.render('new-product'));
 app.post('/new-product', authorize('admin'), uploadMiddleware('image'), products.newProduct);
-
 app.get('/product/:id', products.viewProduct);
 app.get('/add-to-cart/:id', authorize('user'), products.addToCart);
 app.get('/delete/:id', authorize('admin'), products.deleteProduct);
 app.get('/edit/:id', authorize('admin'), products.getEditProduct);
 app.post('/edit/:id', authorize('admin'), uploadMiddleware('image'), products.postEditProduct);
 
-app.get('/oauth', oauth);
+app.use(function(req, res, next) { // 404 route
+    res.status(404);
+    res.render('404', {url: req.url});
+});
 
 (async function main() {
     logger.info('Server start');
