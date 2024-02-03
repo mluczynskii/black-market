@@ -41,7 +41,10 @@ async function oauth(req, res) {
     if (profile.email) {
         req.session.user = profile.email;
         req.session.roles = ['user'];
-        req.session.cart = [];
+        req.session.cart = {
+            total: 0,
+            order: {}
+        };
         logger.info(`Successful OAuth login, email: ${profile.email}`);
         res.redirect('/');
     }

@@ -9,7 +9,7 @@ const database = require('./source/database');
 const {login, register, logout, authorize} = require('./source/login');
 const {sessionManager} = require('./source/session');
 const {uploadMiddleware, newProduct} = require('./source/upload');
-const {search, viewProduct} = require('./source/products');
+const products = require('./source/products');
 
 let app = express();
 
@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('./static'));
 app.use(sessionManager);
 
-app.get('/', search, (req, res) => res.render('landing', {
+app.get('/', products.search, (req, res) => res.render('landing', {
     session: req.session,
     products: req.products
 }));
@@ -37,7 +37,9 @@ app.get('/logout', logout);
 app.get('/new-product', authorize('admin'), (_, res) => res.render('new-product'));
 app.post('/new-product', authorize('admin'), uploadMiddleware('image'), newProduct);
 
-app.get('/product/:id', viewProduct);
+app.get('/product/:id', products.viewProduct);
+app.get('/add-to-cart/:id', authorize('user'), products.addToCart);
+app.get('/delete/:id', authorize('admin'), products.deleteProduct);
 
 app.get('/oauth', oauth);
 

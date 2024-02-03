@@ -17,23 +17,26 @@
     <% if (!locals.product.id) { %>
         <h1>product-not-found...</h1>
     <% } else { %>
-        <div class="container">
-            <img class="product-image" src="/uploads/<%=locals.product.filename%>">
+        <div class="container view-product">
             <p class="product-name"><%=locals.product.product%></p>
-            <p class="product-price"><%=locals.product.price%></p>
+            <div class="image-container">
+                <img class="product-image" src="/uploads/<%=locals.product.filename%>">
+            </div>
+            <p class="product-price"><%=locals.product.price%>$</p>
             <div class="actions">
                 <a href="/add-to-cart/<%=locals.product.id%>">
-                    <button class="add-to-cart"><i class='bx bx-cart-add'></i></button>
+                    <button class="add-to-cart">add-to-cart <i class='bx bx-cart-add'></i></button>
                 </a>
                 <% if (locals.admin) { %>
                     <a href="/edit/<%=locals.product.id%>">
-                        <button class="edit-product"><i class='bx bx-edit-alt' ></i></button>
+                        <button class="edit-product">edit <i class='bx bx-edit-alt' ></i></button>
                     </a>
                     <a href="/delete/<%=locals.product.id%>">
-                        <button class="delete-product"><i class='bx bx-trash' ></i></button>
+                        <button class="delete-product">delete <i class='bx bx-trash' ></i></button>
                     </a>
                 <% } %>
             </div>
+            <p class="message"><%=locals.message%></p>
             
         </div>
     <% } %>

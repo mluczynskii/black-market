@@ -22,7 +22,10 @@ async function login(req, res) {
         Object.assign(req.session, {
             user: entry.email,
             roles: entry.roles,
-            cart: [],
+            cart: {
+                total: 0, 
+                order: {}
+            },
             admin: entry.roles.includes('admin')
         });
         logger.info(`Successful login, email: ${email}`);
