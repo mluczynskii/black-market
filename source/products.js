@@ -1,4 +1,4 @@
-const {Product} = require('./database');
+const {Product, Order} = require('./database');
 const {logger} = require('./logs');
 
 async function search(req, res, next) {
@@ -91,4 +91,33 @@ async function postEditProduct(req, res) {
     }
 }
 
-module.exports = {search, viewProduct, addToCart, deleteProduct, getEditProduct, postEditProduct, newProduct};
+async function removeFromCart(req, res) {
+    try {
+        const name = req.params.name;
+        const product = await Product.findOne({product: name}).exec();
+        if (!req.session.cart.order[name] || !product) 
+            return res.redirect('/');
+        const quantity = req.session.cart.order[name];
+        delete req.session.cart.order[name];
+        req.session.cart.total -= quantity * product.price;
+        res.redirect('/checkout');
+    } catch(err) {
+        logger.error(err);
+        res.redirect('/');
+    }
+}
+
+async function placeOrder(req, res) {
+    if (req.session.cart.total > 0) {
+        const order = new Order({
+            total: req.session.cart.total,
+            email: req.session.user,
+            order: req.session.cart.order
+        });
+        await order.save();
+        logger.info(`New order placed by ${req.session.user}`);
+        res.redirect('/order-placed');
+    }
+}
+
+module.exports = {search, viewProduct, addToCart, deleteProduct, getEditProduct, postEditProduct, newProduct, removeFromCart, placeOrder};

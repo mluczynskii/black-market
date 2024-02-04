@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>black-market-checkout</title>
+</head>
+<body class="form-body">
+    <div class="logo-container">
+        <img class="logo" src="/favicon.ico">
+        <a class="root-link" href="/">black-market.io</a>
+    </div>
+
+    <div class="container">
+        <% if(locals.total <= 0) { %>
+            <h1>shopping-cart-is-empty</h1>
+        <% } else { %>
+            <h1 style="margin-bottom: 10px;">your-order:</h1>
+            <% for(const [name, amount] of Object.entries(locals.order)) { %>
+                <h2>
+                    - <%=name%>: <%=amount%>x 
+                    <a class="remove-link" href="/remove-from-cart/<%=name%>">
+                        <i class='bx bx-x remove-button'></i>
+                    </a>
+                </h2>
+            <% } %>
+            <h1 style="margin-top: 10px;">total: <%=locals.total.toFixed(2)%>$</h1>
+            <form class='place-order' method="POST">
+                <button type="submit">place-order <i class='bx bx-wallet'></i></button>
+            </form>
+        <% } %>
+    </div>
+</body>
+</html>

@@ -22,7 +22,7 @@ const Product = mongoose.model('Product', productSchema);
 
 const orderSchema = new mongoose.Schema({
     email: String,
-    products: [String],
+    order: Object,
     total: Number
 });
 const Order = mongoose.model('Order', orderSchema);

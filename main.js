@@ -27,19 +27,33 @@ app.get('/', products.search, (req, res) => res.render('landing', {
 }));
 
 app.get('/oauth', oauth);
+
 app.get('/login', (_, res) => res.render('login', {google: authorizationUri}));
 app.post('/login', login);
+
 app.get('/register', (_, res) => res.render('register'));
 app.post('/register', register);
+
 app.get('/logout', logout);
 
 app.get('/new-product', authorize('admin'), (_, res) => res.render('new-product'));
 app.post('/new-product', authorize('admin'), uploadMiddleware('image'), products.newProduct);
+
 app.get('/product/:id', products.viewProduct);
+
 app.get('/add-to-cart/:id', authorize('user'), products.addToCart);
+app.get('/remove-from-cart/:name', authorize('user'), products.removeFromCart);
+
 app.get('/delete/:id', authorize('admin'), products.deleteProduct);
+
 app.get('/edit/:id', authorize('admin'), products.getEditProduct);
 app.post('/edit/:id', authorize('admin'), uploadMiddleware('image'), products.postEditProduct);
+
+app.get('/checkout', authorize('user'), (req, res) => {
+    res.render('checkout', req.session.cart);
+});
+app.post('/checkout', authorize('user'), products.placeOrder);
+app.get('/order-placed', (req, res) => res.render('order-placed'));
 
 app.use(function(req, res, next) { // 404 route
     res.status(404);

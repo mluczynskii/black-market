@@ -59,7 +59,7 @@ body {
     border-radius: 8px;
 }
 
-p, h1, h2, a {text-align: center;}
+p, h1, h2, h3, a {text-align: center;}
 
 .socials {
     display: flex;
@@ -317,4 +317,31 @@ a {
         .delete-product {background: #872341;}
         .edit-product {background: #474F7A;}
     }
+}
+
+.not-found {
+    color:#F4EEE0;
+    font-size: 60px;
+    position: absolute;
+    top: 35%;
+}
+
+.place-order {
+    margin-top: 10px;
+    button {
+        width: 100%;
+        color: #F4EEE0;
+        background: #6D5D6E;
+        border: none;
+        cursor: pointer;
+        line-height: 40px;
+        font-size: 20px;
+        border-radius: 8px;
+        font-weight: 400;
+    }
+}
+
+.remove-button {
+    color: #BE3144;
+    font-size: 20px;
 }

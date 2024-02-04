@@ -32,6 +32,10 @@
         </div>
     </div>
 
+    <% if (locals.products.length == 0) { %>
+        <h1 class="not-found">no-products-found</h1>
+    <% } %>
+
     <div class="products-container">
         <% if (locals.session.admin) { %>
             <div class="item new-product">
@@ -41,7 +45,7 @@
                 </a>
             </div>
         <% } %>
-
+        
         <% for (const product of locals.products) { %>
             <div class="item">
                 <a href="/product/<%=product._id%>">
