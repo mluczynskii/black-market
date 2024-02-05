@@ -5,5 +5,6 @@ COPY --chown=node:node package*.json ./
 USER node
 RUN npm install
 COPY --chown=node:node . .
+RUN ./node_modules/.bin/sass ./static/style.scss ./static/style.css
 EXPOSE 3000
 CMD [ "node", "main.js" ]
