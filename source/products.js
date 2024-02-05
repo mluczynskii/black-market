@@ -15,7 +15,7 @@ async function viewProduct(req, res) {
     var product;
     try { product = await Product.findById(req.params.id).exec(); }
     catch(err) { 
-        logger.log(err);
+        logger.error(err);
         product = {};
     };
     res.render('view-product', {
