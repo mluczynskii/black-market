@@ -1,0 +1,16 @@
+<div class="divider"><div class="line"></div></div>
+<% for (const item of list) { %>
+    <% if (users) { %> 
+        <h2><%=item.email%>, <%=item.roles%></h2>
+    <% } else { %>
+        <div class="orderContainer">
+            <h1>order-id: <%=item._id%></h1>
+            <h1>user: <%=item.email%></h1>
+            <% for (const [name, quantity] of Object.entries(item.order)) { %>
+                <h2>- <%=name%>: <%=quantity%>x</h2>
+            <% } %>
+            <h1>total: <%=item.total%>$</h1>
+        </div>
+    <% } %>
+    <div class="divider"><div class="line"></div></div>
+<% } %>

@@ -70,4 +70,12 @@ function authorize(...roles) {
     };
 }
 
-module.exports = {login, register, logout, authorize};
+async function listUsers(req, res) {
+    const users = await User.find({}).exec();
+    res.render('enumerate', {
+        users: true,
+        list: users
+    });
+}
+
+module.exports = {login, register, logout, authorize, listUsers};

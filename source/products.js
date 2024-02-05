@@ -120,4 +120,12 @@ async function placeOrder(req, res) {
     }
 }
 
-module.exports = {search, viewProduct, addToCart, deleteProduct, getEditProduct, postEditProduct, newProduct, removeFromCart, placeOrder};
+async function listOrders(req, res) {
+    const orders = await Order.find({}).exec();
+    res.render('enumerate', {
+        users: false,
+        list: orders
+    });
+}
+
+module.exports = {search, viewProduct, addToCart, deleteProduct, getEditProduct, postEditProduct, newProduct, removeFromCart, placeOrder, listOrders};

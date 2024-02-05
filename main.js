@@ -6,7 +6,7 @@ const {NODE_PORT} = process.env;
 const {oauth, authorizationUri} = require('./source/oauth');
 const {logger} = require('./source/logs');
 const database = require('./source/database');
-const {login, register, logout, authorize} = require('./source/login');
+const {login, register, logout, authorize, listUsers} = require('./source/login');
 const {sessionManager} = require('./source/session');
 const {uploadMiddleware} = require('./source/upload');
 const products = require('./source/products');
@@ -54,6 +54,9 @@ app.get('/checkout', authorize('user'), (req, res) => {
 });
 app.post('/checkout', authorize('user'), products.placeOrder);
 app.get('/order-placed', (req, res) => res.render('order-placed'));
+
+app.get('/list-orders', authorize('admin'), products.listOrders);
+app.get('/list-users', authorize('admin'), listUsers);
 
 app.use(function(req, res, next) { // 404 route
     res.status(404);

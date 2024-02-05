@@ -14,7 +14,8 @@ body {
 }
 
 .form-body {
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     align-items: center;
     color: #F4EEE0;
 
@@ -57,6 +58,12 @@ body {
     width: 540px;
     padding: 40px 32px;
     border-radius: 8px;
+}
+
+.list-container {
+    width: 900px;
+    padding: 40px 32px;
+    margin-top: 100px;
 }
 
 p, h1, h2, h3, a {text-align: center;}
@@ -323,7 +330,7 @@ a {
     color:#F4EEE0;
     font-size: 60px;
     position: absolute;
-    top: 35%;
+    top: 70%;
 }
 
 .place-order {
